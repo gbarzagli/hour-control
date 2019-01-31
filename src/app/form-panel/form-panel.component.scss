@@ -1,0 +1,118 @@
+:host {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 2px 10px rgba($color: #424242 , $alpha: 0.2);
+    border-radius: 15px;
+    position: relative;
+    left: -10px;
+
+    main {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        flex: 1 1 auto;
+        background: white;
+        border-top-right-radius: inherit;
+        padding: 20px;
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                flex: 0 0 40%;
+                outline: none;
+                border: none;
+
+                color: white;
+                border-radius: 5px;
+                box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.2);
+                min-height: 36px;
+                cursor: pointer;
+                padding: 0 16px;
+                transition: all 0.2s ease;
+
+                &.clear {
+                    background: #424242;
+                }
+
+                &.save {
+                    background: #494b99;
+                }
+
+                &:active {
+                    background: rgba($color: #029eb5, $alpha: 1);
+                }
+            }
+        }
+
+
+        .field {
+            display: block;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            width: 100%;
+            height: 2rem;
+            position: relative;
+
+            label {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                bottom: 5px;
+                left: 0;
+                font-size: 1rem;
+                color: rgba($color: #424242, $alpha: 1);
+                cursor: text;
+                transition: .3s ease-in-out;
+                box-sizing: border-box;
+            }
+
+            input {
+                border: none;
+                border-bottom: 2px solid rgba($color: #424242, $alpha: 0.4);
+                font-size: 1rem;
+                width: 100%;
+                height: 2rem;
+                outline: none;
+                position: absolute;
+                box-sizing: border-box;
+                transition: .3s ease-in-out;
+
+                &[type=time] {
+                    +label {
+                        font-size: .8rem;
+                        top: -30px;
+                        pointer-events: none;
+                    }
+                }
+
+                &:focus,
+                &:valid {
+                    border-bottom: 2px solid rgba($color: #ed1b66, $alpha: 1);
+
+                    +label {
+                        color: #ed1b66;
+                        font-size: .8rem;
+                        top: -30px;
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        font-weight: 700;
+        padding: 10px;
+        flex: 0 0 10%;
+        background: #ed1b66;
+        color: white;
+        border-bottom-right-radius: inherit;
+    }
+}

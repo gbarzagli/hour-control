@@ -1,0 +1,19 @@
+<main>
+    <div class="field top-right small">
+        <input id="daily" type="time" [ngModel]="dailyHours" (ngModelChange)="setDailyHours($event)" required />
+        <label for="daily">Horas Diarias</label>
+    </div>
+    <div class="field">
+        <input id="start" type="time" [(ngModel)]="start" required />
+        <label for="start">Hora Inicio</label>
+    </div>
+    <div class="field">
+        <input id="end" type="time" [(ngModel)]="end" required />
+        <label for="end">Hora Fim</label>
+    </div>
+    <div class="buttons">
+        <button class="clear" (click)="clear()">Limpar</button>
+        <button class="save" (click)="save()">Salvar</button>
+    </div>
+</main>
+<footer>Saldo: {{ hourBalance }}</footer>

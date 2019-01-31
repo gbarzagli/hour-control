@@ -1,0 +1,28 @@
+<header>
+    <button (click)="prevMonth()">&lt;</button>
+    <span>{{monthYear}}</span>
+    <button (click)="nextMonth()">&gt;</button>
+</header>
+<main>
+    <table>
+        <thead>
+            <th *ngFor="let day of weekDays">
+                {{day}}
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let week of monthDays">
+                <td *ngFor="let day of week"
+                    [ngClass]="{'deactived': !day.active}"
+                    (click)="selectDay(day)">
+                    <div [ngClass]="{
+                        'today': isToday(day),
+                        'selected': isSelectedDay(day)
+                    }">
+                        {{day.date}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>

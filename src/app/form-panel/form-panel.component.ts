@@ -101,11 +101,10 @@ export class FormPanelComponent implements OnInit, OnDestroy {
 
     calculateTotalBalance() {
         const balances = this.storageService.store.map(day => day.balanceTime);
-        const hoursBalances = balances.map(balance => balance.hours);
-        const minutesBalances = balances.map(balance => balance.minutes);
-
-        let hours = hoursBalances.reduce((last, next) => last + next);
-        let minutes = minutesBalances.reduce((last, next) => last + next);
+        let hours = balances.map(balance => balance.hours)
+                            .reduce((last, next) => last + next);
+        let minutes = balances.map(balance => balance.minutes)
+                              .reduce((last, next) => last + next);
 
         minutes = hours * 60 + minutes;
         hours = (minutes - (minutes % 60)) / 60;

@@ -61,7 +61,7 @@ export class CalendarService {
             }
 
             const hours = hourControl
-                ? hourControl.filter(d => d.date === i)[0]
+                ? hourControl.filter(d => d.date === i && d.month === month)[0]
                 : undefined;
             const start = hours ? hours.start : undefined;
             const end = hours ? hours.end : undefined;

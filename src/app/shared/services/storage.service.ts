@@ -1,15 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Time } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Day } from '../models/day.model';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
-export class StorageService {
+export class StorageService implements OnDestroy {
     static readonly STORAGE_KEY = 'control_hour_storage';
     static readonly DAILY_HOURS = 'daily_hours';
     static readonly HOUR_BALANCE = 'hour_balance';
 
-    constructor() {
+    private interval;
+
+    constructor(
+    ) {
         const data = localStorage.getItem(StorageService.STORAGE_KEY);
         if (data) {
             const array = JSON.parse(data);
@@ -44,12 +49,12 @@ export class StorageService {
         return this.retrieve();
     }
 
-    private save(data) {
+    save(data) {
         const json = JSON.stringify(data);
         localStorage.setItem(StorageService.STORAGE_KEY, json);
     }
 
-    private retrieve() {
+    retrieve() {
         const json = localStorage.getItem(StorageService.STORAGE_KEY);
         const days = JSON.parse(json).map(obj => new Day(obj));
         return days || [];
@@ -88,5 +93,9 @@ export class StorageService {
 
     get hourBalance$(): Observable<string> {
         return Observable.create(observer => { setInterval(() => observer.next(this.hourBalance), 500); });
+    }
+
+    ngOnDestroy(): void {
+        clearInterval(this.interval);
     }
 }

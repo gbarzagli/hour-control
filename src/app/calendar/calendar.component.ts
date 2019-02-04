@@ -5,9 +5,9 @@ import {
     EventEmitter,
     OnDestroy
 } from '@angular/core';
-import { CalendarService } from '../shared/services/calendar.service';
 import { MessagingService } from '../shared/services/messaging.service';
 import { StorageService } from '../shared/services/storage.service';
+import { CalendarService } from './calendar.service';
 
 @Component({
     selector: 'app-calendar',
@@ -30,29 +30,12 @@ export class CalendarComponent implements OnInit, OnDestroy {
     constructor(
         private calendarService: CalendarService,
         private messagingService: MessagingService,
-        private storageService: StorageService
+        private storageService: StorageService,
     ) {}
 
     ngOnInit() {
-        this.month = this.today.getMonth();
-        this.year = this.today.getFullYear();
-        this.changeMonth();
-
-        this.subscription = this.messagingService.messaging.subscribe(msg => {
-            if (msg) {
-                this.monthDays.forEach(week => {
-                    week.forEach(day => {
-                        if (
-                            day.date === msg.date &&
-                            day.month === msg.month &&
-                            day.year === msg.year
-                        ) {
-                            Object.assign(day, msg);
-                        }
-                    });
-                });
-            }
-        });
+        console.log('aqq');
+        this.initialize();
     }
 
     nextMonth() {
@@ -104,6 +87,28 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     isSelectedDay(day): boolean {
         return this.selectedDay === day;
+    }
+
+    initialize() {
+        this.month = this.today.getMonth();
+        this.year = this.today.getFullYear();
+        this.changeMonth();
+
+        this.subscription = this.messagingService.messaging.subscribe(msg => {
+            if (msg) {
+                this.monthDays.forEach(week => {
+                    week.forEach(day => {
+                        if (
+                            day.date === msg.date &&
+                            day.month === msg.month &&
+                            day.year === msg.year
+                        ) {
+                            Object.assign(day, msg);
+                        }
+                    });
+                });
+            }
+        });
     }
 
     ngOnDestroy(): void {

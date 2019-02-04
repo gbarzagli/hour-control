@@ -2,13 +2,13 @@ import { Time } from '@angular/common';
 
 export class Day {
 
-    date: number;
-    month: number;
-    year: number;
-    start: string;
-    end: string;
-    balance: string;
-    active: boolean;
+    date: number = null;
+    month: number = null;
+    year: number = null;
+    start: string = null;
+    end: string = null;
+    balance: string = null;
+    active: boolean = null;
 
     constructor(day: any = {}) {
         this.date = day.date;

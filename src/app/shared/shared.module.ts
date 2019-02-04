@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CalendarService } from './services/calendar.service';
 import { StorageService } from './services/storage.service';
 import { MessagingService } from './services/messaging.service';
+import { AuthenticationService } from './services/authentication.service';
+import { FirebaseStorageService } from './services/firebase-storage.service';
+import { CalendarService } from '../calendar/calendar.service';
 
 @NgModule({
     declarations: [],
     imports: [CommonModule],
     providers: [
-        CalendarService, StorageService,
-        MessagingService
+        AuthenticationService, CalendarService,
+        MessagingService, StorageService,
+        FirebaseStorageService
     ]
 })
 export class SharedModule {}

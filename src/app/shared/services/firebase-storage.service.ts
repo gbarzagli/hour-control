@@ -18,6 +18,6 @@ export class FirebaseStorageService {
     }
 
     synchronize() {
-        this.ngFireDatabase.list(`hour-control/${this.authenticationService.user.uid}`).push(this.storageService.store);
+        this.ngFireDatabase.list(`hour-control`).set(`${this.authenticationService.user.uid}`, this.storageService.store);
     }
 }

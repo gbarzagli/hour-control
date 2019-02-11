@@ -4,6 +4,7 @@ import { Day } from '../shared/models/day.model';
 import { MessagingService } from '../shared/services/messaging.service';
 import { StorageService } from '../shared/services/storage.service';
 import { Time } from '@angular/common';
+import { UtilService } from '../shared/services/util.service';
 
 @Component({
     selector: 'app-form-panel',
@@ -24,7 +25,8 @@ export class FormPanelComponent implements OnInit, OnDestroy {
 
     constructor(
         private messagingService: MessagingService,
-        private storageService: StorageService
+        private storageService: StorageService,
+        private utilService: UtilService
     ) {}
 
     ngOnInit() {
@@ -51,20 +53,12 @@ export class FormPanelComponent implements OnInit, OnDestroy {
             this.day.start = this.start;
             this.day.end = this.end;
 
-            const dailyBalance = this.calculateDailyBalance();
-
-            let strHour = dailyBalance.hours < 10 ? '0' + dailyBalance.hours : dailyBalance.hours;
-            let strMinute = dailyBalance.minutes < 10 ? '0' + dailyBalance.minutes : dailyBalance.minutes;
-
-            this.day.balance = dailyBalance.isNegative ? `-${strHour}:${strMinute}` : `${strHour}:${strMinute}`;
+            const dailyBalance = this.utilService.calculateDailyBalance(this.day);
+            this.day.balance = this.utilService.formatBalance(dailyBalance);
             this.storageService.store = this.day;
 
-            const totalBalance = this.calculateTotalBalance();
-
-            strHour = totalBalance.hours < 10 ? '0' + totalBalance.hours : totalBalance.hours;
-            strMinute = totalBalance.minutes < 10 ? '0' + totalBalance.minutes : totalBalance.minutes;
-
-            this.hourBalance = `${totalBalance.isNegative ? '-' : ''}${strHour}:${strMinute}`;
+            const totalBalance = this.utilService.calculateTotalBalance();
+            this.hourBalance = this.utilService.formatBalance(totalBalance);
             this.storageService.hourBalance = this.hourBalance;
 
             this.messagingService.messaging = this.day;
@@ -73,48 +67,6 @@ export class FormPanelComponent implements OnInit, OnDestroy {
                 'Você precisa selecionar dia, digitar hora inicio e hora fim para salvar.'
             );
         }
-    }
-
-    calculateDailyBalance() {
-        const daily = this.storageService.dailyHoursTime;
-        daily.hours = daily.hours + 1;
-
-        let minutes =
-            this.day.endTime.minutes -
-            this.day.startTime.minutes -
-            daily.minutes;
-        let hours =
-            this.day.endTime.hours -
-            this.day.startTime.hours -
-            daily.hours;
-
-        minutes = hours * 60 + minutes;
-        hours = (minutes - (minutes % 60)) / 60;
-        minutes = minutes % 60;
-
-        const isNegative = hours < 0 || minutes < 0;
-        minutes = Math.abs(minutes);
-        hours = Math.abs(hours);
-
-        return { hours, minutes, isNegative };
-    }
-
-    calculateTotalBalance() {
-        const balances = this.storageService.store.map(day => day.balanceTime);
-        let hours = balances.map(balance => balance.hours)
-                            .reduce((last, next) => last + next);
-        let minutes = balances.map(balance => balance.minutes)
-                              .reduce((last, next) => last + next);
-
-        minutes = hours * 60 + minutes;
-        hours = (minutes - (minutes % 60)) / 60;
-        minutes = minutes % 60;
-
-        const isNegative = hours < 0 || minutes < 0;
-        hours = Math.abs(hours);
-        minutes = Math.abs(minutes);
-
-        return { hours, minutes, isNegative };
     }
 
     setDailyHours(event) {

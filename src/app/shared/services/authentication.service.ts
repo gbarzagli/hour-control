@@ -22,8 +22,8 @@ export class AuthenticationService {
 
     public handleRedirect() {
         this.ngFireAuth.auth.getRedirectResult().then(result => {
-            if (result.user) {
-                this.user = result.user;
+            if (this.ngFireAuth.auth.currentUser) {
+                this.user = this.ngFireAuth.auth.currentUser;
                 this.zone.run(() =>  this.router.navigate([`/home`]));
             }
         });

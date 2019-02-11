@@ -23,16 +23,6 @@
 
             button {
                 flex: 0 0 40%;
-                outline: none;
-                border: none;
-
-                color: white;
-                border-radius: 5px;
-                box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.2);
-                min-height: 36px;
-                cursor: pointer;
-                padding: 0 16px;
-                transition: all 0.2s ease;
 
                 &.clear {
                     background: #424242;
@@ -47,7 +37,6 @@
                 }
             }
         }
-
 
         .field {
             display: block;
@@ -114,5 +103,26 @@
         background: #ed1b66;
         color: white;
         border-bottom-right-radius: inherit;
+    }
+}
+
+button {
+    outline: none;
+    border: none;
+
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.2);
+    min-height: 36px;
+    cursor: pointer;
+    padding: 0 16px;
+    transition: all .2s ease;
+
+    &.logout {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 15px;
+        background-color: #ef4362;
     }
 }

@@ -22,10 +22,6 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
     }
 
-    logout() {
-        this.authenticationService.signOut();
-    }
-
     daySelected(event) {
         console.log(event);
     }

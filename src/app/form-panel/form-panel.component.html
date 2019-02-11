@@ -1,4 +1,5 @@
 <main>
+    <button class="logout" (click)="logout()">Logout</button>
     <div class="field top-right small">
         <input id="daily" type="time" [ngModel]="dailyHours" (ngModelChange)="setDailyHours($event)" required />
         <label for="daily">Horas Diarias</label>

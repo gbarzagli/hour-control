@@ -2,8 +2,6 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Time } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Day } from '../models/day.model';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class StorageService implements OnDestroy {

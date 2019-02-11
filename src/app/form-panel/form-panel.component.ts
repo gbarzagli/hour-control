@@ -3,8 +3,9 @@ import { Subscription } from 'rxjs';
 import { Day } from '../shared/models/day.model';
 import { MessagingService } from '../shared/services/messaging.service';
 import { StorageService } from '../shared/services/storage.service';
-import { Time } from '@angular/common';
 import { UtilService } from '../shared/services/util.service';
+import { FirebaseStorageService } from '../shared/services/firebase-storage.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
     selector: 'app-form-panel',
@@ -24,9 +25,11 @@ export class FormPanelComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
 
     constructor(
+        private authenticationService: AuthenticationService,
+        private firebaseStorageService: FirebaseStorageService,
         private messagingService: MessagingService,
         private storageService: StorageService,
-        private utilService: UtilService
+        private utilService: UtilService,
     ) {}
 
     ngOnInit() {
@@ -62,6 +65,7 @@ export class FormPanelComponent implements OnInit, OnDestroy {
             this.storageService.hourBalance = this.hourBalance;
 
             this.messagingService.messaging = this.day;
+            this.firebaseStorageService.synchronize();
         } else {
             alert(
                 'Você precisa selecionar dia, digitar hora inicio e hora fim para salvar.'
@@ -78,7 +82,13 @@ export class FormPanelComponent implements OnInit, OnDestroy {
         this.start = undefined;
     }
 
+    logout() {
+        this.authenticationService.signOut();
+    }
+
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }

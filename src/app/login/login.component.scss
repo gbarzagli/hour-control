@@ -1,0 +1,22 @@
+button {
+    outline: none;
+    border: none;
+    background: red;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.2);
+    min-height: 36px;
+    cursor: pointer;
+    padding: 16px;
+    transition: all .2s ease;
+
+    span {
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    i {
+        margin-right: 16px;
+    }
+}

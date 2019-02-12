@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/font-awesome/scss/brands.scss';
+@import 'assets/font-awesome/scss/fontawesome.scss';
+@import 'assets/font-awesome/scss/regular.scss';
+@import 'assets/font-awesome/scss/solid.scss';
+
+* {
+    font-family: Roboto;
+}
+
 html, body {
     display: flex;
     justify-content: center;
@@ -6,6 +15,5 @@ html, body {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    font-family: Roboto;
     background: #eeeeee;
 }

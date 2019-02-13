@@ -9,9 +9,7 @@ import { AuthenticationService } from '../shared/services/authentication.service
 export class LoginComponent implements OnInit {
     constructor(private authenticationService: AuthenticationService) {}
 
-    ngOnInit() {
-        this.authenticationService.handleRedirect();
-    }
+    ngOnInit() {}
 
     login() {
         this.authenticationService.signInWithGoogleAuth();

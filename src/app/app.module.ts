@@ -14,9 +14,10 @@ import { FormPanelComponent } from './form-panel/form-panel.component';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
-    declarations: [AppComponent, CalendarComponent, FormPanelComponent, LoginComponent, HomeComponent],
+    declarations: [AppComponent, CalendarComponent, FormPanelComponent, LoginComponent, HomeComponent, CallbackComponent],
     imports: [
         BrowserModule, AppRoutingModule,
         FormsModule, SharedModule,

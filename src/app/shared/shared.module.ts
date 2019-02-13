@@ -5,16 +5,17 @@ import { StorageService } from './services/storage.service';
 import { MessagingService } from './services/messaging.service';
 import { AuthenticationService } from './services/authentication.service';
 import { FirebaseStorageService } from './services/firebase-storage.service';
-import { CalendarService } from '../calendar/calendar.service';
 import { UtilService } from './services/util.service';
+import { AuthenticationGuard } from './services/authentication.guard';
+import { CalendarService } from '../components/calendar/calendar.service';
 
 @NgModule({
-    declarations: [],
     imports: [CommonModule],
     providers: [
         AuthenticationService, CalendarService,
         MessagingService, StorageService,
-        FirebaseStorageService, UtilService
+        FirebaseStorageService, UtilService,
+        AuthenticationGuard
     ]
 })
 export class SharedModule {}

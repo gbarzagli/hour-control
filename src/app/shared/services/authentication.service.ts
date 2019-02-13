@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
@@ -10,8 +10,7 @@ export class AuthenticationService {
 
     constructor(
         private ngFireAuth: AngularFireAuth,
-        private router: Router,
-        private zone: NgZone
+        private router: Router
     ) {
     }
 
@@ -25,13 +24,13 @@ export class AuthenticationService {
         this.ngFireAuth.auth.getRedirectResult().then(result => {
             if (result.user && this.ngFireAuth.auth.currentUser) {
                 this.user = this.ngFireAuth.auth.currentUser;
-                this.zone.run(() =>  this.router.navigate([`/home`]));
+                this.router.navigate([`/home`]);
             }
         });
     }
 
     public signOut() {
-        this.user = undefined;
+        this.user = this.ngFireAuth.auth.currentUser;
         this.ngFireAuth.auth.signOut();
         this.router.navigate([`/login`]);
     }

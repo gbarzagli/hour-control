@@ -5,9 +5,9 @@ import {
     EventEmitter,
     OnDestroy
 } from '@angular/core';
-import { MessagingService } from '../shared/services/messaging.service';
-import { StorageService } from '../shared/services/storage.service';
 import { CalendarService } from './calendar.service';
+import { MessagingService } from 'src/app/shared/services/messaging.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({
     selector: 'app-calendar',

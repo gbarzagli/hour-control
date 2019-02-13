@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthenticationService } from '../shared/services/authentication.service';
-import { FirebaseStorageService } from '../shared/services/firebase-storage.service';
-import { CalendarComponent } from '../calendar/calendar.component';
-import { Router, NavigationEnd } from '@angular/router';
+import { CalendarComponent } from 'src/app/components/calendar/calendar.component';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { FirebaseStorageService } from 'src/app/shared/services/firebase-storage.service';
 
 @Component({
     selector: 'app-home',

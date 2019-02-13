@@ -16,16 +16,7 @@ export class StorageService implements OnDestroy {
         const data = localStorage.getItem(StorageService.STORAGE_KEY);
         if (data) {
             const array = JSON.parse(data);
-            array.sort((a, b) =>
-                (a.year < b.year)   ? -1 :
-                (a.year > b.year)   ?  1 :
-                (a.month < b.month) ? -1 :
-                (a.month > b.month) ?  1 :
-                (a.date < b.date)   ? -1 :
-                (a.date > b.date)   ?  1 :
-                0
-            );
-            localStorage.setItem(StorageService.STORAGE_KEY, JSON.stringify(array));
+            localStorage.setItem(StorageService.STORAGE_KEY, JSON.stringify(this.sortArray(array)));
         } else {
             localStorage.setItem(StorageService.STORAGE_KEY, '[]');
         }
@@ -48,7 +39,11 @@ export class StorageService implements OnDestroy {
     }
 
     save(data) {
-        const json = JSON.stringify(data);
+        data = data.map(day => {
+            delete day.active;
+            return day;
+        });
+        const json = JSON.stringify(this.sortArray(data));
         localStorage.setItem(StorageService.STORAGE_KEY, json);
     }
 
@@ -91,6 +86,19 @@ export class StorageService implements OnDestroy {
 
     get hourBalance$(): Observable<string> {
         return Observable.create(observer => { setInterval(() => observer.next(this.hourBalance), 500); });
+    }
+
+
+    private sortArray(array) {
+        return array.sort((a, b) =>
+            (a.year < b.year)   ? -1 :
+            (a.year > b.year)   ?  1 :
+            (a.month < b.month) ? -1 :
+            (a.month > b.month) ?  1 :
+            (a.date < b.date)   ? -1 :
+            (a.date > b.date)   ?  1 :
+            0
+        );
     }
 
     ngOnDestroy(): void {

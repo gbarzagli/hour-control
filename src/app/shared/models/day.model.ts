@@ -1,7 +1,6 @@
 import { Time } from '@angular/common';
 
 export class Day {
-
     date: number = null;
     month: number = null;
     year: number = null;
@@ -16,8 +15,10 @@ export class Day {
         this.year = day.year;
         this.start = day.start;
         this.end = day.end;
-        this.active = day.active;
         this.balance = day.balance;
+        if (day.active) {
+            this.active = day.active;
+        }
     }
 
     get startTime(): Time {
@@ -35,8 +36,8 @@ export class Day {
         const balance = this.balance.slice(1);
         const split = balance.split(':').map(str => parseInt(str, 10));
         return {
-            hours: (isNegative ? -split[0] : split[0]),
-            minutes: (isNegative ? -split[1] : split[1]),
+            hours: isNegative ? -split[0] : split[0],
+            minutes: isNegative ? -split[1] : split[1],
             isNegative
         };
     }

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Day } from '../shared/models/day.model';
-import { MessagingService } from '../shared/services/messaging.service';
-import { StorageService } from '../shared/services/storage.service';
-import { UtilService } from '../shared/services/util.service';
-import { FirebaseStorageService } from '../shared/services/firebase-storage.service';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { Day } from 'src/app/shared/models/day.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { FirebaseStorageService } from 'src/app/shared/services/firebase-storage.service';
+import { MessagingService } from 'src/app/shared/services/messaging.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
+import { UtilService } from 'src/app/shared/services/util.service';
 
 @Component({
     selector: 'app-form-panel',

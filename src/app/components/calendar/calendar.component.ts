@@ -34,7 +34,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        console.log('aqq');
         this.initialize();
     }
 

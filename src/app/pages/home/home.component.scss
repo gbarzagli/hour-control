@@ -10,7 +10,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50%;
-        height: 50%;
+        width: 100%;
+        height: 100%;
+
+        @media screen and (min-width: 1024px) {
+            width: 50%;
+
+        }
+
+        @media screen and (min-height: 760px) {
+            height: 50%;
+        }
     }
 }

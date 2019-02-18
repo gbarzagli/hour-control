@@ -1,19 +1,41 @@
 <main>
-    <button class="logout" (click)="logout()">Logout</button>
-    <div class="field top-right small">
-        <input id="daily" type="time" [ngModel]="dailyHours" (ngModelChange)="setDailyHours($event)" required />
-        <label for="daily">Horas Diarias</label>
+    <div id="menu" class="overlay">
+        <div class="closebtn">
+            <a (click)="closeMenu()">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+
+        <div class="overlay-content">
+            <div class="field">
+                <input
+                    id="daily"
+                    type="time"
+                    [ngModel]="dailyHours"
+                    (ngModelChange)="setDailyHours($event)"
+                    required
+                />
+                <label for="daily">Horas Diárias</label>
+            </div>
+            <button class="logout" (click)="logout()">
+                Logout
+            </button>
+        </div>
     </div>
+
+    <button class="menu" (click)="menu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <div class="field">
         <input id="start" type="time" [(ngModel)]="start" required />
-        <label for="start">Hora Inicio</label>
+        <label for="start">Horário Entrada</label>
     </div>
     <div class="field">
         <input id="end" type="time" [(ngModel)]="end" required />
-        <label for="end">Hora Fim</label>
+        <label for="end">Horário Saída</label>
     </div>
     <div class="buttons">
-        <button class="clear" (click)="clear()">Limpar</button>
         <button class="save" (click)="save()">Salvar</button>
     </div>
 </main>

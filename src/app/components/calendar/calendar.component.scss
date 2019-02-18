@@ -15,7 +15,9 @@
         background: rgba($color: #ed1b66 , $alpha: 1);
         color: white;
         border-top-left-radius: inherit;
-        border-top-right-radius: inherit;
+        @media screen and (min-width: 1024px) and (min-height: 760px) {
+            border-top-right-radius: inherit;
+        }
 
         button {
             flex: 0 0 10%;
@@ -53,7 +55,9 @@
         flex: 1 1 auto;
         background: white;
         border-bottom-left-radius: inherit;
-        border-bottom-right-radius: inherit;
+        @media screen and (min-width: 1024px) and (min-height: 760px) {
+            border-bottom-right-radius: inherit;
+        }
 
         table {
             display: flex;

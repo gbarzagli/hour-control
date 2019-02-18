@@ -86,6 +86,14 @@ export class FormPanelComponent implements OnInit, OnDestroy {
         this.authenticationService.signOut();
     }
 
+    menu() {
+        document.getElementById('menu').style.display = 'flex';
+    }
+
+    closeMenu() {
+        document.getElementById('menu').style.display = 'none';
+    }
+
     ngOnDestroy() {
         if (this.subscription) {
             this.subscription.unsubscribe();

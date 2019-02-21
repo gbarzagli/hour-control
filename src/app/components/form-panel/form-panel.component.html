@@ -11,6 +11,7 @@
                 <input
                     id="daily"
                     type="time"
+                    pattern="[0-2][0-9]:[0-5][0-9]"
                     [ngModel]="dailyHours"
                     (ngModelChange)="setDailyHours($event)"
                     required
@@ -28,11 +29,11 @@
     </button>
 
     <div class="field">
-        <input id="start" type="time" [(ngModel)]="start" required />
+        <input id="start" type="time" [(ngModel)]="start" required pattern="[0-2][0-9]:[0-5][0-9]" />
         <label for="start">Horário Entrada</label>
     </div>
     <div class="field">
-        <input id="end" type="time" [(ngModel)]="end" required />
+        <input id="end" type="time" [(ngModel)]="end" required pattern="[0-2][0-9]:[0-5][0-9]" />
         <label for="end">Horário Saída</label>
     </div>
     <div class="buttons">

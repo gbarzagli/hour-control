@@ -4,6 +4,7 @@ import { AuthenticationService } from './authentication.service';
 import { StorageService } from './storage.service';
 import { UtilService } from './util.service';
 import { Subscription } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class FirebaseStorageService implements OnDestroy {
@@ -14,6 +15,7 @@ export class FirebaseStorageService implements OnDestroy {
         private authenticationService: AuthenticationService,
         private storageService: StorageService,
         private utilService: UtilService,
+        private ngFireAuth: AngularFireAuth,
         private ngFireDatabase: AngularFireDatabase
     ) {
         this.ngFireDatabase.list(`hour-control/${this.authenticationService.user.uid}`).valueChanges().subscribe(
@@ -22,6 +24,11 @@ export class FirebaseStorageService implements OnDestroy {
                 const totalBalance = this.utilService.calculateTotalBalance();
                 const totalBalanceStr = this.utilService.formatBalance(totalBalance);
                 this.storageService.hourBalance = totalBalanceStr;
+            },
+            error => {
+                if (this.ngFireAuth.auth.currentUser) {
+                    console.error(error);
+                }
             }
         );
     }

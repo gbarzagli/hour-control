@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthenticationService {
@@ -14,10 +15,23 @@ export class AuthenticationService {
     ) {
     }
 
+    signUpToFirebase({ email, password }: User) {
+        this.ngFireAuth.auth.createUserWithEmailAndPassword(email, password).catch(error => {
+            const { code, message } = error;
+            alert(`[${code}] ${message}`);
+        });
+    }
+
+    signInToFirebase({ email, password }: User) {
+        this.ngFireAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {
+            const { code, message } = error;
+            alert(`[${code}] ${message}`);
+        });
+    }
+
     public signInWithGoogleAuth() {
         this.router.navigate(['/callback']);
         this.ngFireAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-
     }
 
     public handleRedirect() {

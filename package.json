@@ -1,13 +1,16 @@
 {
   "name": "control-hour",
   "version": "0.0.0",
+  "main": "electron/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +24,10 @@
     "@angular/platform-browser": "^7.2.13",
     "@angular/platform-browser-dynamic": "^7.2.13",
     "@angular/router": "^7.2.13",
+    "@types/electron": "^1.6.10",
     "core-js": "^2.5.4",
     "firebase": "^5.8.2",
+    "ngx-electron": "^2.1.1",
     "rxjs": "^6.5.1",
     "zone.js": "^0.8.26"
   },
@@ -35,6 +40,7 @@
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^8.10.46",
     "codelyzer": "^4.5.0",
+    "electron": "^6.0.1",
     "jasmine-core": "^2.99.1",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.1.0",

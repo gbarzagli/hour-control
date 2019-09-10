@@ -1,0 +1,9 @@
+<input #input
+    [type]="type"
+    [(ngModel)]="value"
+    [ngClass]="{ 'filled': hasValue() }"
+    [pattern]="pattern"
+    [required]="required"
+    [email]="email"
+/>
+<label (click)="focusField()">{{label}}</label>

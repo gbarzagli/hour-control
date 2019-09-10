@@ -9,8 +9,11 @@ import { UtilService } from './services/util.service';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { CalendarService } from '../components/calendar/calendar.service';
 
+import { NgxElectronModule } from 'ngx-electron';
+
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule, NgxElectronModule],
+    exports: [NgxElectronModule],
     providers: [
         AuthenticationService, CalendarService,
         MessagingService, StorageService,

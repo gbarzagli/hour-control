@@ -6,6 +6,8 @@ import { FirebaseStorageService } from 'src/app/shared/services/firebase-storage
 import { MessagingService } from 'src/app/shared/services/messaging.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/services/util.service';
+import { ElectronService } from 'ngx-electron';
+import { IpcRenderer } from 'electron';
 
 @Component({
     selector: 'app-form-panel',
@@ -24,13 +26,26 @@ export class FormPanelComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
 
+
+    private ipc: IpcRenderer;
     constructor(
         private authenticationService: AuthenticationService,
         private firebaseStorageService: FirebaseStorageService,
         private messagingService: MessagingService,
         private storageService: StorageService,
         private utilService: UtilService,
-    ) {}
+        private electronService: ElectronService
+    ) {
+        if ((<any>window).require) {
+            try {
+              this.ipc = (<any>window).require('electron').ipcRenderer
+            } catch (error) {
+              throw error
+            }
+          } else {
+            console.warn('Could not load electron ipc')
+          }
+    }
 
     ngOnInit() {
         this.subscription = this.messagingService.messaging.subscribe(msg => {
@@ -84,6 +99,10 @@ export class FormPanelComponent implements OnInit, OnDestroy {
 
     logout() {
         this.authenticationService.signOut();
+    }
+
+    export() {
+        this.ipc.send('export', this.storageService.store);
     }
 
     menu() {

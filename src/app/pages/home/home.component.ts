@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
     constructor(
         public authenticationService: AuthenticationService,
-        private firebaseStorageService: FirebaseStorageService,
     ) {
     }
 
@@ -26,6 +25,5 @@ export class HomeComponent implements OnInit {
     }
 
     synchronize() {
-        this.firebaseStorageService.synchronize();
     }
 }

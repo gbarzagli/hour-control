@@ -1,3 +1,53 @@
-<button (click)="login()">
+<main>
+    <header class="title">
+        Hour Control
+    </header>
+    <section class="body">
+        <section class="account-login">
+                <app-form-field 
+                    label="E-mail"
+                    [(value)]="email" 
+                    type="form">
+                </app-form-field>
+                <app-form-field 
+                    label="Password"
+                    [(value)]="password" 
+                    type="password">
+                </app-form-field>
+                <app-button class="primary">
+                    Login
+                </app-button>
+            </section>
+
+            <div></div>
+        
+            <section class="account-creation">
+                <app-form-field 
+                    label="E-mail"
+                    [(value)]="form.email" 
+                    type="email"
+                    required="true">
+                </app-form-field>
+                <app-form-field 
+                    label="Password"
+                    [(value)]="form.password" 
+                    type="password"
+                    required="true">
+                </app-form-field>
+                <app-form-field 
+                    label="Confirm password"
+                    [(value)]="form.confirmPassword" 
+                    type="password"
+                    required="true">
+                </app-form-field>
+                <app-button class="accent" [disabled]="form.invalid">
+                <!-- <app-button class="accent" > -->
+                    Create account
+                </app-button>
+            </section>
+    </section>
+</main>
+
+<!-- <button (click)="login()">
     <i class="fab fa-google"></i> <span>Login with Google</span>
-</button>
+</button> -->

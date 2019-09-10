@@ -10,14 +10,24 @@ export class Day {
     active: boolean = null;
 
     constructor(day: any = {}) {
-        this.date = day.date;
-        this.month = day.month;
-        this.year = day.year;
-        this.start = day.start;
-        this.end = day.end;
-        this.balance = day.balance;
-        if (day.active) {
-            this.active = day.active;
+        const { 
+            date, 
+            month, 
+            year, 
+            start, 
+            end, 
+            balance, 
+            active 
+        } = day;
+        
+        this.date = date;
+        this.month = month;
+        this.year = year;
+        this.start = start;
+        this.end = end;
+        this.balance = balance;
+        if (active) {
+            this.active = active;
         }
     }
 

@@ -1,0 +1,52 @@
+@import '../../../assets/styles/colors';
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    color: $color-white;
+    border-radius: 0.5rem;
+    box-shadow: 0.1rem 0.1rem 0.5rem rgba($color: $color-black, $alpha: 0.2);
+    min-height: 36px;
+    cursor: pointer;
+    padding: 0 1.6rem;
+    transition: all .2s ease;
+
+    &.primary {
+        background: $color-primary;
+        &:active {
+            background: rgba($color: $color-primary-active, $alpha: 1);
+        }
+        &.disabled {
+            cursor: not-allowed;
+            background: rgba($color: $color-primary, $alpha: 0.5);
+        }
+    }
+
+    &.secondary {
+        background: $color-secondary;
+        &:active {
+            background: rgba($color: $color-secondary-active, $alpha: 1);
+        }
+        &.disabled {
+            cursor: not-allowed;
+            background: rgba($color: $color-secondary, $alpha: 0.5);
+        }
+    }
+
+    &.accent {
+        background: $color-accent;
+        &:active {
+            background: rgba($color: $color-accent-active, $alpha: 1);
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+            background: rgba($color: $color-accent, $alpha: 0.5);
+        }
+    }
+
+    
+}

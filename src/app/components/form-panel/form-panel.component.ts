@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Day } from 'src/app/shared/models/day.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -6,8 +6,8 @@ import { FirebaseStorageService } from 'src/app/shared/services/firebase-storage
 import { MessagingService } from 'src/app/shared/services/messaging.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UtilService } from 'src/app/shared/services/util.service';
-import { ElectronService } from 'ngx-electron';
 import { IpcRenderer } from 'electron';
+import { ExportService } from 'src/app/shared/services/export.service';
 
 @Component({
     selector: 'app-form-panel',
@@ -34,17 +34,8 @@ export class FormPanelComponent implements OnInit, OnDestroy {
         private messagingService: MessagingService,
         private storageService: StorageService,
         private utilService: UtilService,
-        private electronService: ElectronService
+        private exportService: ExportService
     ) {
-        if ((<any>window).require) {
-            try {
-              this.ipc = (<any>window).require('electron').ipcRenderer
-            } catch (error) {
-              throw error
-            }
-          } else {
-            console.warn('Could not load electron ipc')
-          }
     }
 
     ngOnInit() {
@@ -102,7 +93,8 @@ export class FormPanelComponent implements OnInit, OnDestroy {
     }
 
     export() {
-        this.ipc.send('export', this.storageService.store);
+        const options = this.exportService.getExportOptions();
+        this.exportService.exportTo({ test: 1 }, undefined, options.JSON)
     }
 
     menu() {

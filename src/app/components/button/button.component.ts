@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Output, EventEmitter, Input, HostBinding } from '@angular/core';
+import { Component, HostListener, Output, EventEmitter, Input, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'app-button',

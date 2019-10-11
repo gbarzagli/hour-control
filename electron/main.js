@@ -10,10 +10,12 @@ const createWindow = () => {
         width: 720,
         height: 425,
         webPreferences: {
-            preload: "./preload.js" // path.join(app.getAppPath(), "/electron/preload.js")
+            preload: path.join(app.getAppPath(), "/electron/preload.js")
             // devTools: false
         }
     });
+
+    
 
     // Load UI
     window.loadURL(`http://localhost:4200`);
@@ -40,6 +42,7 @@ app.on("activate", () => {
     if (window === null) {
         createWindow();
     }
+    console.log(app.getAppPath());
 });
 
 

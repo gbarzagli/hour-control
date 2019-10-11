@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
@@ -20,8 +20,9 @@ import { PagesModule } from './pages/pages.module';
         FormsModule, SharedModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, AngularFireAuthModule,
-        ComponentsModule, PagesModule
+        ComponentsModule, PagesModule,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {}

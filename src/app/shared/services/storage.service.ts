@@ -4,12 +4,10 @@ import { Observable } from 'rxjs';
 import { Day } from '../models/day.model';
 
 @Injectable()
-export class StorageService implements OnDestroy {
+export class StorageService {
     static readonly STORAGE_KEY = 'control_hour_storage';
     static readonly DAILY_HOURS = 'daily_hours';
     static readonly HOUR_BALANCE = 'hour_balance';
-
-    private interval;
 
     constructor(
     ) {
@@ -99,9 +97,5 @@ export class StorageService implements OnDestroy {
             (a.date > b.date)   ?  1 :
             0
         );
-    }
-
-    ngOnDestroy(): void {
-        clearInterval(this.interval);
     }
 }

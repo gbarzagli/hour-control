@@ -8,6 +8,7 @@ import { FirebaseStorageService } from './services/firebase-storage.service';
 import { UtilService } from './services/util.service';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { CalendarService } from '../components/calendar/calendar.service';
+import { ExportService } from './services/export.service';
 
 import { NgxElectronModule } from 'ngx-electron';
 
@@ -18,7 +19,7 @@ import { NgxElectronModule } from 'ngx-electron';
         AuthenticationService, CalendarService,
         MessagingService, StorageService,
         FirebaseStorageService, UtilService,
-        AuthenticationGuard
+        AuthenticationGuard, ExportService
     ]
 })
 export class SharedModule {}

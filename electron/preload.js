@@ -1,4 +1,4 @@
-const { doExport, EXPORT_OPTIONS } = require("./exportApi");
+const exportApi = require("./exportApi");
 
-window.export = doExport;
-window["EXPORT_OPTIONS"] = EXPORT_OPTIONS;
+window.exportApi = exportApi;
+// window["EXPORT_OPTIONS"] = EXPORT_OPTIONS;

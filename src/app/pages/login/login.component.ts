@@ -4,7 +4,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { isNullOrUndefined } from 'util';
 import { FormGroup, FormControl, EmailValidator, Validators } from '@angular/forms';
 
-class CreateUserForm {
+class UserForm {
     email: string = null;
     password: string = null;
     confirmPassword: string = null;
@@ -35,7 +35,7 @@ class CreateUserForm {
 })
 export class LoginComponent implements OnInit {
     user: User;
-    form: CreateUserForm = new CreateUserForm();
+    form: UserForm = new UserForm();
 
     constructor(private authenticationService: AuthenticationService) {}
 
@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.authenticationService.signInWithGoogleAuth();
+        this.authenticationService.signInToFirebase(this.user);
     }
 }

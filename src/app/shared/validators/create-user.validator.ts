@@ -8,12 +8,8 @@ export const passwordValidator: ValidatorFn = (control: FormGroup): ValidationEr
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
 
-    debugger
     if (password && confirmPassword && (password.value !== confirmPassword.value)) {
-        const error = { 'passwordsNotMatch': true };
-        password.setErrors(error);
-        confirmPassword.setErrors(error);
-        return error;
+        return { 'passwordsNotMatch': true };
     }
     return null;
 };

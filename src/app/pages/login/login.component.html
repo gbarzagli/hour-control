@@ -6,12 +6,10 @@
         <section class="account-login">
                 <app-form-field 
                     label="E-mail"
-                    [(value)]="email" 
                     type="form">
                 </app-form-field>
                 <app-form-field 
                     label="Password"
-                    [(value)]="password" 
                     type="password">
                 </app-form-field>
                 <app-button class="primary">
@@ -21,30 +19,30 @@
 
             <div></div>
         
-            <section class="account-creation">
+            <form class="account-creation" #createForm [formGroup]="form">
                 <app-form-field 
                     label="E-mail"
-                    [(value)]="form.email" 
                     type="email"
-                    required="true">
+                    required="true"
+                    formControlName="email">
                 </app-form-field>
                 <app-form-field 
                     label="Password"
-                    [(value)]="form.password" 
                     type="password"
-                    required="true">
+                    required="true"
+                    formControlName="password">
                 </app-form-field>
                 <app-form-field 
                     label="Confirm password"
-                    [(value)]="form.confirmPassword" 
                     type="password"
-                    required="true">
+                    required="true"
+                    formControlName="confirmPassword">
                 </app-form-field>
-                <app-button class="accent" [disabled]="form.invalid">
+                <app-button class="accent" [disabled]="form.invalid" (onClick)="createForm.submit();">
                 <!-- <app-button class="accent" > -->
                     Create account
                 </app-button>
-            </section>
+            </form>
     </section>
 </main>
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { User } from 'src/app/shared/models/user.model';
 import { isNullOrUndefined } from 'util';
-import { FormGroup, FormControl, EmailValidator, Validators } from '@angular/forms';
+import { passwordValidator } from 'src/app/shared/validators/create-user.validator';
 
 class UserForm {
     email: string = null;
@@ -35,12 +36,17 @@ class UserForm {
 })
 export class LoginComponent implements OnInit {
     user: User;
-    form: UserForm = new UserForm();
+    form: FormGroup;
 
     constructor(private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
         this.user = new User();
+        this.form = new FormGroup({
+            email: new FormControl('', [Validators.email, Validators.required]),
+            password: new FormControl('', Validators.required),
+            confirmPassword: new FormControl('', Validators.required)
+        }, passwordValidator);
     }
 
     login() {

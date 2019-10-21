@@ -19,7 +19,11 @@ export class AuthenticationService {
      * Creates a new user in Firebase using email and password.
      */
     signUpToFirebase({ email, password }: User) {
-        this.ngFireAuth.auth.createUserWithEmailAndPassword(email, password).catch(error => {
+        this.ngFireAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            alert('User registered successfully');
+        })
+        .catch(error => {
             const { code, message } = error;
             alert(`[${code}] ${message}`);
         });

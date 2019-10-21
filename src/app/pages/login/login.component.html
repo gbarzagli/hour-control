@@ -19,7 +19,7 @@
 
             <div></div>
         
-            <form class="account-creation" #createForm [formGroup]="form">
+            <form class="account-creation" #createForm="ngForm" [formGroup]="form">
                 <app-form-field 
                     label="E-mail"
                     type="email"
@@ -38,8 +38,10 @@
                     required="true"
                     formControlName="confirmPassword">
                 </app-form-field>
-                <app-button class="accent" [disabled]="form.invalid" (onClick)="createForm.submit();">
-                <!-- <app-button class="accent" > -->
+                <app-button 
+                    class="accent"
+                    [disabled]="form.invalid" 
+                    (onClick)="createUser(createForm.value)">
                     Create account
                 </app-button>
             </form>
